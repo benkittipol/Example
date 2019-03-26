@@ -12,6 +12,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # disable warning
 np.random.seed(456)
 set_random_seed(123)
 
+print("# This file is created by Ben Kittipol")
+print("# Use for predicting EPL score margin")
+print()
+
 all_team = ["Arsenal", "Bournemouth", "Brighton", "Burnley", "Cardiff", "Chelsea",
             "Crystal Palace", "Everton", "Fulham", "Huddersfield", "Leicester",
             "Liverpool", "Man City", "Man United", "Newcastle", "Southampton",
@@ -19,7 +23,7 @@ all_team = ["Arsenal", "Bournemouth", "Brighton", "Burnley", "Cardiff", "Chelsea
 
 while True:
     # print instruction
-    print("Input team number")
+    print("Enter team number")
     for i in range(20):
         print(i, ":", all_team[i])
 

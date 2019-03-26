@@ -8,6 +8,11 @@ import warnings
 pd.options.mode.chained_assignment = None
 
 
+###############################
+# EPL Funtion by Ben Kittipol #
+###############################
+
+
 # process data for predicting
 def predict_data(home, away, df, predict=False, tor="default"):
 
