@@ -3,7 +3,7 @@
 This is example of English Premeir League score margin prediction. Please use this file for entertainment only.
 
 ## Requirements
-- tensorflow
+- tensorflow (I used tensorflow-gpu 1.10.0)
 - numpy
 - pandas
 
