@@ -77,61 +77,62 @@ while(True):
         break
 
     # action
-    if notAct:
-        notAct = False
-        time.sleep(2)
-        #auto.click(x=175, y=400)
-        auto.press("space")
-    else:
-        xFeature = thresh / 255 # normalize -> scale to 0-1
-        xFeature = xFeature[30:,:] # cut some sky, don't need this info
-        xFeature = xFeature.reshape(-1,100,180,1) # height * width
-        prob = actor_model.predict(xFeature)
-        act = np.random.choice(np.arange(nAct),p=prob[0])
-        #act = np.argmax(prob[0])
+    if not adjust_scrn:
 
-        # print action
-        #print(action[act])
+        if notAct:
+            notAct = False
+            time.sleep(2)
+            #auto.click(x=175, y=400)
+            auto.press("space")
+        else:
+            xFeature = thresh / 255 # normalize -> scale to 0-1
+            xFeature = xFeature[30:,:] # cut some sky, don't need this info
+            xFeature = xFeature.reshape(-1,100,180,1) # height * width
+            prob = actor_model.predict(xFeature)
+            act = np.random.choice(np.arange(nAct),p=prob[0])
+            #act = np.argmax(prob[0])
 
-        # press keyboard
-        if not adjust_scrn:
+            # print action
+            #print(action[act])
+
+            # press keyboard
             try: auto.keyUp(action[lastAct])
             except: pass
             auto.keyDown(action[act])
-        lastAct = act
+            lastAct = act
 
-        # check freeze
-        try:
-            freezeScrn = np.array_equal(lastScore, scoreScrn)
-        except:
-            freezeScrn = False
+            # check freeze
+            try:
+                freezeScrn = np.array_equal(lastScore, scoreScrn)
+            except:
+                freezeScrn = False
 
-        if freezeScrn:
-            freeze += 1
-        else:
-            freeze = 0
+            if freezeScrn:
+                freeze += 1
+            else:
+                freeze = 0
 
-        #collect last score screen
-        lastScore = scoreScrn
+            #collect last score screen
+            lastScore = scoreScrn
 
-        total_reward += 1
+            total_reward += 1
 
-        if freeze >= 10:
+            if freeze >= 10:
 
-            # release key
-            try: auto.keyUp(action[lastAct])
-            except: pass
+                # release key
+                try: auto.keyUp(action[lastAct])
+                except: pass
 
-            # print stats
-            gen += 1
-            print("Gen:", gen, "- Reward:", total_reward)
+                # print stats
+                gen += 1
+                print("Gen:", gen, "- Reward:", total_reward)
 
-            # reset and start new game
-            time.sleep(2)
-            for _ in range(2):
-                auto.press("space")
-            freeze = 0
-            total_reward = 0
+                # reset and start new game
+                time.sleep(2)
+                for _ in range(2):
+                    auto.press("space")
+                freeze = 0
+                total_reward = 0
 
 
 # try to release key
