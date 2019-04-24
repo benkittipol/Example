@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import cv2
 import os
 import time
@@ -18,6 +17,7 @@ sct = mss()
 
 # save / load model
 loadmodel = True
+adjust_scrn = False
 actor_model_path = os.path.join("model", "actor.h5")
 
 
@@ -94,9 +94,10 @@ while(True):
         #print(action[act])
 
         # press keyboard
-        try: auto.keyUp(action[lastAct])
-        except: pass
-        auto.keyDown(action[act])
+        if not adjust_scrn:
+            try: auto.keyUp(action[lastAct])
+            except: pass
+            auto.keyDown(action[act])
         lastAct = act
 
         # check freeze
