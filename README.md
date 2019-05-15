@@ -13,7 +13,7 @@ This is example of 1-hour trained model that learned to play cubefield game on b
 ## Instructions
 - Open your browser and enter game url -> http://thesimplearcade.com/play/cubefield.html
 - Move your browser to the leftmost of your screen. The default position of top-left of flash element is 190 pixels from top and 5 pixels from left.
-- If you want to change the flash element screen position, change line 14 to fit your preference.
+- If you want to change the capturing position of flash element screen, change line 14 to fit your preference.
 - To see the captured screen for adjusting browser window, change `adjust_scrn = False` to `adjust_scrn = True` in line 20.
   - run `play_ac.py` file. The new small windows of processed captured screen will pop up. This window show what AI see.
   - move your browser screen to fit captured position or change your captured position to fit your screen.
